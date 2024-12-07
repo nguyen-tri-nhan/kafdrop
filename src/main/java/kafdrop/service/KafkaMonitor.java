@@ -82,7 +82,7 @@ public interface KafkaMonitor {
    * @param topic name of the topic to delete
    */
   void deleteTopic(String topic);
-  
+
   RecordMetadata publishMessage(CreateMessageVO message, Serializers serializers);
 
   List<AclVO> getAcls();

@@ -67,10 +67,11 @@ public final class KafkaMonitorImpl implements KafkaMonitor {
   private final KafkaHighLevelConsumer highLevelConsumer;
 
   private final KafkaHighLevelAdminClient highLevelAdminClient;
-  
+
   private final KafkaHighLevelProducer highLevelProducer;
 
-  public KafkaMonitorImpl(KafkaHighLevelConsumer highLevelConsumer, KafkaHighLevelAdminClient highLevelAdminClient, KafkaHighLevelProducer highLevelProducer) {
+  public KafkaMonitorImpl(KafkaHighLevelConsumer highLevelConsumer, KafkaHighLevelAdminClient highLevelAdminClient,
+                          KafkaHighLevelProducer highLevelProducer) {
     this.highLevelConsumer = highLevelConsumer;
     this.highLevelAdminClient = highLevelAdminClient;
     this.highLevelProducer = highLevelProducer;
@@ -427,8 +428,8 @@ public final class KafkaMonitorImpl implements KafkaMonitor {
       .collect(Collectors.toList());
   }
 
-	@Override
-	public RecordMetadata publishMessage(CreateMessageVO message, Serializers serializers) {
-		return highLevelProducer.publishMessage(message, serializers);
-	}
+  @Override
+  public RecordMetadata publishMessage(CreateMessageVO message, Serializers serializers) {
+    return highLevelProducer.publishMessage(message, serializers);
+  }
 }
