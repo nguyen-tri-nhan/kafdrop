@@ -47,13 +47,13 @@ public final class KafkaHighLevelProducer {
 		}
 	}
 	
-	public RecordMetadata publishMessage(CreateMessageVO message, Serializers searilazers) {
+	public RecordMetadata publishMessage(CreateMessageVO message, Serializers serializers) {
 		initializeClient();
 		
 		final ProducerRecord<byte[], byte[]> record = new ProducerRecord<byte[], byte[]>(message.getTopic(),
 				message.getTopicPartition(),
-				searilazers.getKeySerializer().serializeMessage(message.getKey()),
-				searilazers.getValueSerializer().serializeMessage(message.getValue()));
+				serializers.getKeySerializer().serializeMessage(message.getKey()),
+				serializers.getValueSerializer().serializeMessage(message.getValue()));
 
 		Future<RecordMetadata> result = kafkaProducer.send(record);
 		try {

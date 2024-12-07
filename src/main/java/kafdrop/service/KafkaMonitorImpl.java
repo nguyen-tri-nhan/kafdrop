@@ -18,21 +18,45 @@
 
 package kafdrop.service;
 
-import kafdrop.model.*;
-import kafdrop.util.*;
-import org.apache.kafka.clients.admin.*;
-import org.apache.kafka.clients.admin.ConfigEntry.*;
-import org.apache.kafka.clients.consumer.*;
+import kafdrop.model.AclVO;
+import kafdrop.model.BrokerVO;
+import kafdrop.model.ClusterSummaryVO;
+import kafdrop.model.ConsumerVO;
+import kafdrop.model.ConsumerTopicVO;
+import kafdrop.model.ConsumerPartitionVO;
+import kafdrop.model.CreateMessageVO;
+import kafdrop.model.CreateTopicVO;
+import kafdrop.model.MessageVO;
+import kafdrop.model.SearchResultsVO;
+import kafdrop.model.TopicVO;
+import kafdrop.model.TopicPartitionVO;
+import kafdrop.util.Serializers;
+import kafdrop.util.Deserializers;
+import org.apache.kafka.clients.admin.ConfigEntry.ConfigSource;
+import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.clients.consumer.OffsetAndMetadata;
 import org.apache.kafka.clients.producer.RecordMetadata;
-import org.apache.kafka.common.*;
-import org.apache.kafka.common.header.*;
-import org.slf4j.*;
-import org.springframework.stereotype.*;
+import org.apache.kafka.common.PartitionInfo;
+import org.apache.kafka.common.TopicPartition;
+import org.apache.kafka.common.header.Headers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.Map.*;
-import java.util.function.*;
-import java.util.stream.*;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.Map.Entry;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static java.util.function.Predicate.not;
 
